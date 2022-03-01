@@ -1,0 +1,89 @@
+import React, { useState } from "react";
+
+
+const MultipleInputs = () =>{
+    const [records, setRecords] = useState([]);
+    const [userRegistration , setuserRegistration] = useState({
+        username : "",
+        email : "",
+        phone : "",
+        password : ""
+    }); 
+    const handleInput = (e) =>{
+        const name = e.target.name;
+        const value = e.target.value;
+        console.log(name , value);
+
+        setuserRegistration({ ... userRegistration, [name]:value});
+    }
+    
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        const newRecord = { ...userRegistration, id:new Date().getTime().toString()}
+        console.log(records);
+        setRecords([...records, newRecord]);
+        console.log(records);
+
+        setuserRegistration({username:"", email:"", phone:"", password:""});
+    }
+    return(
+        // React Fragment short form Syntactic sugar
+        <> 
+            <form action="" onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="username"> Fullname</label>
+                    <input type= "text" autoCapitalize="off" 
+                    value={userRegistration.username}
+                    onChange = {handleInput}
+                    name="username" id="username"/>
+                </div>
+                
+                <div>
+                    <label htmlFor="email"> email</label>
+                    <input type= "text" autoCapitalize="off" 
+                    value={userRegistration.email}
+                    onChange = {handleInput}
+                    name="email" id="email"/>
+                </div>
+                
+                <div>
+                    <label htmlFor="phone"> phone</label>
+                    <input type= "text" autoCapitalize="off" 
+                    value={userRegistration.phone}
+                    onChange = {handleInput}
+                    name="phone" id="phone"/>
+                </div>
+
+                <div>
+                    <label htmlFor="password"> password</label>
+                    <input type= "text" autoCapitalize="off" 
+                    value={userRegistration.password}
+                    onChange = {handleInput}
+                    name="password" id="password"/>
+                </div>
+
+                <button type="submit"> Register</button>
+                
+            </form>
+
+            <div>
+
+                {
+
+                    records.map((currentElem) => {
+                        return(
+                            <div className="showDataStyle">
+                                <p>{currentElem.username}</p>
+                                <p>{currentElem.email}</p>
+                                <p>{currentElem.phone}</p>
+                                <p>{currentElem.password}</p>
+                            </div>
+                        )
+                    })
+                }
+            </div>
+        </>
+    )
+}
+
+export default MultipleInputs
