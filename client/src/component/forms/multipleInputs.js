@@ -15,7 +15,7 @@ const MultipleInputs = () =>{
         const value = e.target.value;
         console.log(name , value);
 
-        setuserRegistration({ ... userRegistration, [name]:value});
+        setuserRegistration({...userRegistration, [name]:value});
     }
     
     const handleSubmit = (e) =>{
