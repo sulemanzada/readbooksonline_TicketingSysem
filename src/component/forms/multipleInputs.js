@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 
+
 const MultipleInputs = () =>{
     const [records, setRecords] = useState([]);
     const [userRegistration , setuserRegistration] = useState({
@@ -71,12 +72,13 @@ const MultipleInputs = () =>{
                 {
 
                     records.map((currentElem) => {
+                        const {id, username, email, phone, password} = currentElem;//object de-structuring
                         return(
-                            <div className="showDataStyle">
-                                <p>{currentElem.username}</p>
-                                <p>{currentElem.email}</p>
-                                <p>{currentElem.phone}</p>
-                                <p>{currentElem.password}</p>
+                            <div className="showDataStyle" key = {id}>
+                                <p>{username}</p>
+                                <p>{email}</p>
+                                <p>{phone}</p>
+                                <p>{password}</p>
                             </div>
                         )
                     })
