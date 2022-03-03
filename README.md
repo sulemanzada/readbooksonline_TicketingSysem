@@ -1,4 +1,4 @@
-# The project is Parts
+# The project in Parts
 
 The project is divided into two parts
 1. Client (or front End)
@@ -16,5 +16,12 @@ nodemon app.js
 
 Currently the frontend and backend both uses port 3000 so you can not run both at the same time. I will update this soon.
 
-"# readbooksonline" 
+## Development
+
+3/3/2022: Created Navbar, for that I used bootstrap5.
+            Created pages for signin, signup, about us and home. The pages load without refreshing (page routing) to achieve this I used react router dom.
+            in the blog https://theknowledgeburrow.com/what-is-the-difference-between-navlink-and-link/
+            the author said that "React router can be an overkill for certain projects where all you need is basic navigation and routing functionalities. In that context, React Router is not necessary at all."
+            For a simple project like RBO, React router is an indeed overkill but I used it anyway.
+
 "# readbooksonline" 

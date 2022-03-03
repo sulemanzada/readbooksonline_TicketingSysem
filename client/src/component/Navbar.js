@@ -1,31 +1,33 @@
-import React from 'react'
-import 'bootstrap/dist/css/bootstrap.css'
-function Navbar() {
+import React from 'react';
+import { Outlet, NavLink } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+
+const Navbar = () => {
     return (
         <>
 
-            <nav class="navbar navbar-expand-lg navbar-light" style={{ background: '#b3e5fc' }}>
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Navbar</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+            <nav className="navbar navbar-expand-lg navbar-light" style={{ background: '#b3e5fc' }}>
+                <div className="container-fluid">
+                    <NavLink className="navbar-brand" to="#">Navbar</NavLink>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Home</a>
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/">Home</NavLink>
                                 {/* aria-current="page"  put this after van-link if needed*/}
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">About Us</a>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/Aboutus">About Us</NavLink>
                                 {/* aria-current="page" */}
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Login</a>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/login">Login</NavLink>
                                 {/* aria-current="page" */}
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Signup</a>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="signup">Signup</NavLink>
                                 {/* aria-current="page" */}
                             </li>
                         </ul>
@@ -33,6 +35,7 @@ function Navbar() {
                     </div>
                 </div>
             </nav>
+            <Outlet />
 
         </>
     )

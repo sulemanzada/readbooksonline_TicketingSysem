@@ -1,8 +1,13 @@
 import React from 'react'
 
-function Login() {
+const Login = () => {
     return (
-        <div>Login</div>
+        <>
+
+            <h1 className="pt-5">Login</h1>
+            <p>Login</p>
+
+        </>
     )
 }
 

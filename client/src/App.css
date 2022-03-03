@@ -128,33 +128,10 @@ form label {
   text-transform: capitalize;
 }
 
-form input {
-  min-width: 20rem;
-  height: 2rem;
-  border-radius: 0.5rem;
-  font-size: 1.2rem;
-  text-align: left;
-  border: none;
-  margin-top: 0.3rem;
-  padding: 0.5rem;
-  outline: none;
-}
 
-button[type] {
-  border: none;
-  padding: 0.4rem 1rem;
-  text-align: center;
-  margin-top: 1rem;
-  font-family: "Raleway", sans-serif;
-  border-radius: 0.3rem;
-  cursor: pointer;
-  outline: none;
-}
 
-button[type]:hover {
-  background-color: darkblue;
-  color: aliceblue;
-}
+
+
 
 .showDataStyle {
   min-width: 20rem;
@@ -208,10 +185,7 @@ h2 {
   min-width: 155px;
   margin-right: 20px;
 }
-.stats {
-  background: #f2f5f8 !important;
-  color: #000 !important;
-}
+
 .articles {
   font-size: 10px;
   color: #a1aab9;
@@ -233,3 +207,251 @@ h2 {
 .number3 {
   font-weight: 500;
 } */
+
+.text_effects{
+	text-shadow:2px 2px 2px blue;
+	transition: transform 2s;
+}
+
+
+
+/*animation in css3*/
+
+.batman_contact{
+	width: 100%; height: 100px;  position: relative;
+}
+
+.batman_contact img{
+	width: 140px; height: 120px;
+	position: absolute; 
+	left: 0; top: -15px;
+	animation-name: batmanbhag;
+	animation-duration: 6s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes batmanbhag{
+	0%{left: 0}
+	100%{ left: 85% }
+}
+
+/*transition in css3*/
+.love_class{
+	width: 50px; height: 50px; 
+	transition-property: transform;
+	transition-duration: 1s;
+}
+
+.love_class:hover{
+	/*width: 100px; height: 100px; */
+	transform: scale(2, 2);
+}
+
+/*multiple column in css3*/
+
+.about_para{
+	column-count: 3;
+	column-gap: 50px;
+	column-rule: dashed;
+	text-align: justify;
+}
+
+/*border in css3*/
+
+.img-fluid{
+	border-radius: 50px;
+}
+
+.card{
+	box-shadow: 4px 4px 5px 4px grey;
+}
+
+/*transform in css3*/
+
+.text_effects:hover{
+	transform: rotate(360deg);
+}
+
+/*linear-gradient*/
+
+.join_gradient{
+	background-image: linear-gradient(to left,#F650FE    , #607BF5);
+}
+
+/*flexbox in css3*/
+
+.flex_css{
+	width: 100%; height: 100px; 
+	background-image: linear-gradient(to left,#F650FE    , #607BF5);
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+
+button[type]:hover {
+  background-color: darkblue;
+  color: aliceblue;
+}
+.btn:hover {
+  background-color: #136ca7;
+}
+
+form input {
+  min-width: 20rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  text-align: left;
+  margin-top: 0.3rem;
+  padding: 0.5rem;
+  
+}
+
+form {
+  width: 100%;
+}
+
+.loginBox {
+  width: 50%;
+  text-align: center;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 20%);
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.4);
+}
+
+.signUpSubmit {
+  margin: 25px 0 15px 0;
+}
+
+.pwStrRow {
+  width: 63%;
+  text-align: left;
+  margin: auto;
+  padding: 0;
+  font-size: 12px;
+}
+
+.pwStrWeak {
+  display: inline-block;
+  position: relative;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  color: gray;
+}
+
+.pwStrStrong {
+  display: inline-block;
+  position: relative;
+  left: 77%;
+  padding: 0;
+  margin: 0;
+  color: gray;
+}
+
+@media screen and (max-width: 550px) {
+  .loginBox {
+    width: 85%;
+  }
+}
+
+.register{
+    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+    margin-top: 3%;
+    padding: 3%;
+}
+.register-left{
+    text-align: center;
+    color: #fff;
+    margin-top: 4%;
+}
+.register-left input{
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    width: 60%;
+    background: #f8f9fa;
+    font-weight: bold;
+    color: #383d41;
+    margin-top: 30%;
+    margin-bottom: 3%;
+    cursor: pointer;
+}
+.register-right{
+    background: #f8f9fa;
+    border-top-left-radius: 10% 50%;
+    border-bottom-left-radius: 10% 50%;
+}
+.register-left img{
+    margin-top: 15%;
+    margin-bottom: 5%;
+    width: 25%;
+    -webkit-animation: mover 2s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+.register-left p{
+    font-weight: lighter;
+    padding: 12%;
+    margin-top: -9%;
+}
+.register .register-form{
+    padding: 10%;
+    margin-top: 10%;
+}
+.btnRegister{
+    float: right;
+    margin-top: 10%;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    background: #0062cc;
+    color: #fff;
+    font-weight: 600;
+    width: 50%;
+    cursor: pointer;
+}
+.register .nav-tabs{
+    margin-top: 3%;
+    border: none;
+    background: #0062cc;
+    border-radius: 1.5rem;
+    width: 28%;
+    float: right;
+}
+.register .nav-tabs .nav-link{
+    padding: 2%;
+    height: 34px;
+    font-weight: 600;
+    color: #fff;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+.register .nav-tabs .nav-link:hover{
+    border: none;
+}
+.register .nav-tabs .nav-link.active{
+    width: 100px;
+    color: #0062cc;
+    border: 2px solid #0062cc;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+.register-heading{
+    text-align: center;    
+    margin-top: 8%;
+    margin-bottom: -15%;
+    color: #495057;
+}
