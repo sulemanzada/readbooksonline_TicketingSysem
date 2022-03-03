@@ -1,29 +1,29 @@
 const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
-    fname:{
+    fname: {
         type: String,
         required: true
     },
-    lname:{
+    lname: {
         type: String,
         required: true
     },
-    email:{
+    email: {
         type: String,
         required: [true, 'Email is required'],
         unique: true,
-        lowercase: true,
-        validate: [isEmail, 'Please enter a valid email']
+        lowercase: true
+        // validate: [isEmail, 'Please enter a valid email']
     },
-    password:{
+    password: {
         type: String,
         required: [true, 'Password is required']
     },
-    cpassword:{
+    cpassword: {
         type: String,
         required: [true, 'Password is required']
     },
-    gender: {type: String, possibleValues: ['male','female']}
+    gender: { type: String, possibleValues: ['male', 'female'] }
 })
 
 const User = mongoose.model('USER', userSchema);
