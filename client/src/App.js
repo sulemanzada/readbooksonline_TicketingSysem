@@ -1,6 +1,7 @@
 // import { application } from 'express';
 import './App.css';
 import MultipleInputs from './component/forms/multipleInputs';
+import Navbar from './component/Navbar';
 // we link the router files to make our route easy 
 // App.use(require('./server/router/auth'));
 // require("./db/conn");
@@ -15,9 +16,9 @@ import MultipleInputs from './component/forms/multipleInputs';
 
 function App() {
   return (
-    <div >
-     <MultipleInputs/>
-    </div>
+    <>
+      <Navbar></Navbar>
+    </>
   );
 }
 

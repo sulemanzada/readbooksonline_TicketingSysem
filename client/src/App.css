@@ -40,10 +40,10 @@ html {
    font-size: 90.5%;
 }
 
-body {
+/* body {
   min-height: 100vh;
   width: 100vw;
-  background-color: #34495e;
+  background-color: #cfdbe7;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,16 +58,16 @@ body {
 
 .App-link {
   color: #8be3fb;
-}
+} */
 
-div {
+/* div {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
+} */
 
-p {
+/* p {
   font-size: 4rem;
 }
 
@@ -86,9 +86,9 @@ h1 {
   box-shadow: 0rem 2rem 2rem -1.5rem rgba(0, 0, 0, 0.5);
   margin-top: 2rem;
   text-align: center;
-}
+} */
 
-.btn,
+/* .btn,
 .btnInner {
   margin: auto;
   margin-top: 2rem;
@@ -100,8 +100,8 @@ h1 {
   cursor: pointer;
   border-radius: 1rem;
   font-size: 3rem;
-}
-
+} */
+/* 
 .btnInner {
   background-color: #d12b54;
   padding: 0.7rem 1.5rem;
@@ -178,7 +178,7 @@ button[type]:hover {
 
 .showDataStyle p:first-child {
   font-weight: bold;
-}
+} */
 
 /* body {
   background-color: #b3e5fc;
