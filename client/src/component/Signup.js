@@ -1,106 +1,106 @@
 import React, { useState } from "react";
+
 import { NavLink } from "react-router-dom";
+// import Login from './component/Login';
+import './signup.css'
+
 const Signup = () => {
-    const [records, setRecords] = useState([]);
-    const [userRegistration, setuserRegistration] = useState({
-        fname: "",
-        lname: "",
-        email: "",
-        phone: "",
-        password: "",
-        cpassword: ""
-    });
-    const handleInput = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-        console.log(name, value);
-
-        setuserRegistration({ ...userRegistration, [name]: value });
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const newRecord = { ...userRegistration, id: new Date().getTime().toString() }
-        console.log(records);
-        setRecords([...records, newRecord]);
-        console.log(records);
-
-        setuserRegistration({ fname: "", lname: "", email: "", phone: "", password: "", cpassword: "" });
-    }
     return (
         // React Fragment short form Syntactic sugar
         <>
-            <div className="container register">
-                <div className="row">
-                    <div className="col-md-3 register-left">
-                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
-                        <h3>Welcome</h3>
+            <section style={{ backgroundColor: "#b3e5fc" }}>
+                <div className="container h-100">
+                    <div className="row d-flex justify-content-center align-items-center h-100">
+                        <div className="col-lg-12 col-xl-11">
+                            <div className="card text-black" style={{ borderRadius: "25px" }}>
+                                <div className="card-body p-md-5" style={{ backgroundColor: "#eeee" }}>
 
-                        <NavLink to="/login">
-                            <input type="submit" name="" value="Login" />
-                            <br /></NavLink>
-                        <p>Already Have Account</p>
+                                    <div className="row justify-content-center" >
 
-                    </div>
-                    <div className="col-md-9 register-right">
+                                        <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1" >
+
+                                            <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-2">Sign up</p>
+
+                                            <form className="mx-1 mx-md-4" id="registration-form">
+
+                                                <div className="d-flex flex-row align-items-center mb-4">
+                                                    <label htmlFor="fname">
+                                                        <i class="zmdi zmdi-account"></i>
+                                                    </label>
+                                                    <input type="text" name="fname" id="fname" className="form-control" autoComplete="off"
+                                                        placeholder="First Name" />
+
+                                                </div>
+                                                <div className="d-flex flex-row align-items-center mb-4">
+                                                    <label htmlFor="lname">
+                                                        <i class="zmdi zmdi-account"></i>
+                                                    </label>
+                                                    <input type="text" name="lname" id="lname" className="form-control" autoComplete="off"
+                                                        placeholder="Last Name" />
+
+                                                </div>
+
+                                                <div className="d-flex flex-row align-items-center mb-4">
+                                                    <label htmlFor="lname">
+                                                        <i class="zmdi zmdi-email"></i>
+                                                    </label>
+                                                    <input type="text" name="email" id="email" className="form-control" autoComplete="off"
+                                                        placeholder="Your Email" />
+
+                                                </div>
+                                                <div className="d-flex flex-row align-items-center mb-4">
+                                                    <label htmlFor="lname">
+                                                        <i class="zmdi zmdi-lock"></i>
+                                                    </label>
+                                                    <input type="password" name="password" id="password" className="form-control" autoComplete="off"
+                                                        placeholder="Password" />
+
+                                                </div>
+                                                <div className="d-flex flex-row align-items-center mb-4">
+                                                    <label htmlFor="lname">
+                                                        <i class="zmdi zmdi-lock"></i>
+                                                    </label>
+                                                    <input type="password" name="cpassword" id="cpassword" className="form-control" autoComplete="off"
+                                                        placeholder="Repeat your password" />
+
+                                                </div>
 
 
-                        <h3 className="register-heading">Register as a Client</h3>
+                                                <div className="form-check d-flex justify-content-center mb-5">
+                                                    <input
+                                                        className="form-check-input me-2"
+                                                        type="checkbox"
+                                                        value=""
+                                                        id="form2Example3c"
+                                                    />
+                                                    <label className="form-check-label" for="form2Example3">
+                                                        I agree all statements in <a href="#!">Terms of service</a>
+                                                    </label>
+                                                </div>
 
-                        <from className="row register-form" action="" onSubmit={handleSubmit}>
+                                                <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                                    <button type="button" className="btn btn-primary btn-lg">Register</button>
+                                                </div>
 
-                            <div className="col-md-6">
-                                <div className="form-group">
-                                    <input type="text" autoCapitalize="off" className="form-control" placeholder="First Name *" value={userRegistration.fname}
-                                        onChange={handleInput} name="fname" id="fname" />
-                                </div>
-                                <div className="form-group">
-                                    <input type="text" autoCapitalize="off" className="form-control" placeholder="Last Name *" value={userRegistration.lname}
-                                        onChange={handleInput} name="lname" id="lname" />
-                                </div>
-                                <div className="form-group">
-                                    <input type="password" autoCapitalize="off" className="form-control" placeholder="Password *" value={userRegistration.password}
-                                        onChange={handleInput} name="password" id="password" />
-                                </div>
+                                            </form>
 
-                                <div className="form-group">
-                                    <div className="maxl">
-                                        <label className="radio inline">
-                                            <input type="radio" name="gender" value="male" checked />
-                                            <span> Male </span>
-                                        </label>
-                                        <label className="radio inline">
-                                            <input type="radio" name="gender" value="female" />
-                                            <span>Female </span>
-                                        </label>
+                                        </div>
+                                        <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp" className="img-fluid" alt="Sample image" />
+
+                                        </div>
+                                        <p className="text-center text-muted mt-2 mb-0">Have already an account? <NavLink to={"/login"} className="fw-bold text-body"><u>Login here</u></NavLink></p>
                                     </div>
+
                                 </div>
                             </div>
-                            <div className="col-md-6">
-                                <div className="form-group">
-                                    <input type="email" autoCapitalize="off" className="form-control" placeholder="Your Email *" value={userRegistration.email}
-                                        onChange={handleInput} name="email" id="email" />
-                                </div>
-
-                                <div className="form-group">
-                                    {/* minlength="10" maxlength="10" */}
-                                    <input type="text" className="form-control" placeholder="Your Phone *" value={userRegistration.phone}
-                                        onChange={handleInput} name="txtEmpPhone" id="txtEmpPhone" />
-                                </div>
-
-                                <div className="form-group">
-                                    <input type="password" autoCapitalize="off" className="form-control" placeholder="Confirm Password *" value={userRegistration.cpassword}
-                                        onChange={handleInput} name="cpassword" id="cpassword" />
-                                </div>
-
-
-                                <input type="submit" className="btnRegister" value="Register" />
-                            </div>
-                        </from>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-            </div>
+
         </>
     )
 }

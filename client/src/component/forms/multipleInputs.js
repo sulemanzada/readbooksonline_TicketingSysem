@@ -89,3 +89,96 @@ const MultipleInputs = () =>{
 }
 
 export default MultipleInputs
+
+
+// <div className="container register">
+// <div className="row">
+//     <div className="col-md-3 register-left">
+//         <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+//         <h3>Welcome</h3>
+
+
+//         <NavLink to="/login">
+//             <input type="submit" name="" value="Login" /><br />
+//         </NavLink>
+//         <span >Already Have Account</span>
+//     </div>
+//     <div className="col-md-9 register-right">
+
+
+//         <h3 className="register-heading">Register as a Client</h3>
+
+//         <from className="row register-form" action="" onSubmit={handleSubmit}>
+
+//             <div className="col-md-6">
+//                 <div className="form-group">
+//                     <input type="text" autoCapitalize="off" className="form-control" placeholder="First Name *" value={userRegistration.fname}
+//                         onChange={handleInput} />
+//                 </div>
+//                 <div className="form-group">
+//                     <input type="text" autoCapitalize="off" className="form-control" placeholder="Last Name *" value={userRegistration.lname}
+//                         onChange={handleInput} />
+//                 </div>
+//                 <div className="form-group">
+//                     <input type="password" autoCapitalize="off" className="form-control" placeholder="Password *" value={userRegistration.password}
+//                         onChange={handleInput} />
+//                 </div>
+
+//                 <div className="form-group">
+//                     <div className="maxl">
+//                         <label className="radio inline">
+//                             <input type="radio" name="gender" value="male" checked />
+//                             <span> Male </span>
+//                         </label>
+//                         <label className="radio inline">
+//                             <input type="radio" name="gender" value="female" />
+//                             <span>Female </span>
+//                         </label>
+//                     </div>
+//                 </div>
+//             </div>
+//             <div className="col-md-6">
+//                 <div className="form-group">
+//                     <input type="email" autoCapitalize="off" className="form-control" placeholder="Your Email *" value={userRegistration.email}
+//                         onChange={handleInput} />
+//                 </div>
+
+//                 <div class="form-group">
+//                     <input type="text" class="form-control" placeholder="Your Phone Number *" value={userRegistration.phone}
+//                         onChange={handleInput} />
+//                 </div>
+
+//                 <div className="form-group">
+//                     <input type="password" autoCapitalize="off" className="form-control" placeholder="Confirm Password *" value={userRegistration.cpassword}
+//                         onChange={handleInput} />
+//                 </div>
+//                 <button type="submit"  >Register </button>
+
+//             </div>
+            
+//         </from>
+//     </div>
+// </div>
+
+// </div>
+
+// <div>
+
+// {
+
+//     records.map((currentElem) => {
+//         const { id, fname, lname, email, phone, password, cpassword } = currentElem;//object de-structuring
+//         return (
+//             <div className="showDataStyle" key={id}>
+
+//                 <p>{fname}</p>
+//                 <p>{lname}</p>
+//                 <p>{email}</p>
+//                 <p>{phone}</p>
+//                 <p>{password}</p>
+//                 <p>{cpassword}</p>
+//             </div>
+//         )
+//     })
+// }
+// </div>
