@@ -1,26 +1,26 @@
 import React,  { useState } from "react";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 // import Login from './component/Login';
 import './signup.css'
 
 const Signup = () => {
-    
+    const navigate = useNavigate();
     const [user , setUser] = useState({
         fname : "",
         lname: "",
         email : "",
         password : "",
         cpassword : ""
-    });
+    })
     
     let name, value; 
-    const [records, setRecords] = useState([]);
+    // const [records, setRecords] = useState([]);
     const handleInput = (e) =>{
         
         name = e.target.name;
         value = e.target.value;
-        console.log(name, value);
+        // console.log(name, value);
         setUser({...user, [name]:value});
     }
     // const handleSubmit = (e) =>{
@@ -35,9 +35,32 @@ const Signup = () => {
     const PostData = async (e) =>{
         e.preventDefault();
         const {fname , lname, email , password , cpassword } =  user;
+        console.log(fname , lname, email , password , cpassword);
+        const res = await fetch("/register", {
+            method: "POST",
+            headers:{
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify({
+                fname , lname, email , password , cpassword
+            })
 
-        const res = await fetch("/register");
+        });
 
+        const data = await res.json();
+        // console.log("error status:", data);f
+        // console.log(data.status);
+        if (data.status === 422 || !data) {
+            window.alert("INVALID registration");
+            console.log("Invalid registration");
+            
+        }
+        else{
+            window.alert("Registration Sucessfull");
+            console.log("Registration Sucessfull");
+            
+            navigate("/Login");
+        }
     }
     return (
         // React Fragment short form Syntactic sugar

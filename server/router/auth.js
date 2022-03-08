@@ -4,12 +4,13 @@ const router = Router();
 require('../db/conn');
 const User = require("../model/userSchema");
 
-router.get('/', (req, res) => {
-    res.send(`Hello world from the server rotuer js`);
-});
+// router.get('/', (req, res) => {
+//     res.send(`Hello world from the server rotuer js`);
+// });
 
 router.post('/register', async(req, res) => {
-    const { fname, lname, email, password, cpassword} = req.body;
+    const {fname, lname, email, password, cpassword} = req.body;
+    // console.log(fname, lname, email, password, cpassword);
     if (!fname || !lname || !email || !password || !cpassword) {
         return res.status(422).json({error: "Plz fill the field properly"});
         
@@ -17,14 +18,14 @@ router.post('/register', async(req, res) => {
     try {
         const userExist = await User.findOne({email: email});
         if (userExist) {
-            return res.status(422).json({error: "Email already Exist"});
+            return res.status(422).json({status: 422, error: "Email already Exist"});
         }
         else if (password !== cpassword) {
             return res.status(422).json({error:"password do not match"});
             
         }
         else{
-            const user = new User({fname, lname, email, password });
+            const user = new User({fname, lname, email, password, cpassword });
             await user.save();
             res.status(201).json({message: "user registered successfully"});
         }
