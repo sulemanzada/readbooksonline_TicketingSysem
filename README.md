@@ -19,7 +19,7 @@ nodemon app.js
 
 `npm start`
 
-~~ Currently the frontend and backend both uses port 3000 so you can not run both at the same time. I will update this soon.~~ 
+~~Currently the frontend and backend both uses port 3000 so you can not run both at the same time. I will update this soon~~ 
 
 ### Start your local mongoDB create a database
 
