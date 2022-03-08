@@ -1,1 +1,12 @@
+.cust_bg_color {
+  background-color: "#b3b3ff"
+  }
+  .rainbow-gradient {
+    background-color:#adffe4;
+    background-image: radial-gradient(at 18% 17%, hsla(34,84%,70%,1) 0, transparent 70%), radial-gradient(at 85% 12%, hsla(195,100%,56%,1) 0, transparent 60%), radial-gradient(at 90% 90%, hsla(6,100%,65%,1) 0, transparent 60%), radial-gradient(at 14% 81%, hsla(291,89%,73%,1) 0, transparent 70%);
+  }
 
+  .nav-rainbow-gradient {
+    background-color:#d9ebe5;
+    background-image: radial-gradient(at 18% 17%, rgb(215, 228, 230) 0, transparent 70%), radial-gradient(at 85% 12%, hsla(195,100%,56%,1) 0, transparent 60%), radial-gradient(at 90% 90%, rgb(131, 203, 224) 0, transparent 60%), radial-gradient(at 14% 81%, rgb(103, 137, 233) 0, transparent 70%);
+  }

@@ -9,8 +9,8 @@ router.get('/', (req, res) => {
 });
 
 router.post('/register', async(req, res) => {
-    const { fname, lname, email, password, cpassword, gender} = req.body;
-    if (!fname || !lname || !email || !password || !cpassword || gender) {
+    const { fname, lname, email, password, cpassword} = req.body;
+    if (!fname || !lname || !email || !password || !cpassword) {
         return res.status(422).json({error: "Plz fill the field properly"});
         
     }
@@ -24,7 +24,7 @@ router.post('/register', async(req, res) => {
             
         }
         else{
-            const user = new User({fname, lname, email, password, gender });
+            const user = new User({fname, lname, email, password });
             await user.save();
             res.status(201).json({message: "user registered successfully"});
         }

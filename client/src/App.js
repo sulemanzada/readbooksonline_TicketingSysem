@@ -1,7 +1,6 @@
 // import { application } from 'express';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import MultipleInputs from './component/forms/multipleInputs';
 import Navbar from './component/Navbar';
 import Home from './component/Home';
 import Login from './component/Login';

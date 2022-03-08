@@ -30,7 +30,7 @@ const MultipleInputs = () =>{
     return(
         // React Fragment short form Syntactic sugar
         <> 
-            <form action="" onSubmit={handleSubmit}>
+            <form  onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="username"> Fullname</label>
                     <input type= "text" autoCapitalize="off" 
