@@ -27,8 +27,11 @@ router.post('/register', async(req, res) => {
         }
         else{
             const user = new User({fname, lname, email, password, cpassword });
-            await user.save();
+            const userReg = await user.save();
             res.status(201).json({message: "user registered successfully"});
+            // console.log(`${user} user registered sucessfully`);
+            // console.log(userReg);
+
         }
     } catch (error) {
         console.log(error);
@@ -49,14 +52,14 @@ try{
         const token = await userLogin.generateAuthToken();
 
         //Generating/Storing Cookies
-        /*
+        
         res.cookie("jwtaaftoken", token,{
             //Expires cookies after 30days (25892000000 milisec)
             expires: new Date(Date.now() + 25892000000),
             httpOnly:true
         });
 
-        */
+        
         if (isMatch) {
             res.json({message: "User Sign in Successfully"});
         }
