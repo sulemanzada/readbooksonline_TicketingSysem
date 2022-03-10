@@ -1,5 +1,6 @@
+const jwt = require('jsonwebtoken');
 const {Router} = require('express');
-const router = Router();
+const bcrypt = require('bcryptjs');
 
 require('../db/conn');
 const User = require("../model/userSchema");
@@ -7,7 +8,7 @@ const User = require("../model/userSchema");
 // router.get('/', (req, res) => {
 //     res.send(`Hello world from the server rotuer js`);
 // });
-
+const router = Router();
 router.post('/register', async(req, res) => {
     const {fname, lname, email, password, cpassword} = req.body;
     // console.log(fname, lname, email, password, cpassword);
@@ -42,15 +43,32 @@ try{
 
     }
     const userLogin = await User.findOne({email:email});
-    if(!userLogin){
-        res.status(400).json({error: "user does not exists"});
+    if(userLogin){
+        const isMatch = await  bcrypt.compare(password, userLogin.password);
+        // Generating Token
+        const token = await userLogin.generateAuthToken();
+
+        //Generating/Storing Cookies
+        /*
+        res.cookie("jwtaaftoken", token,{
+            //Expires cookies after 30days (25892000000 milisec)
+            expires: new Date(Date.now() + 25892000000),
+            httpOnly:true
+        });
+
+        */
+        if (isMatch) {
+            res.json({message: "User Sign in Successfully"});
+        }
     }else{
-        res.json({message: "User Sign in Successfully"});
+        res.status(400).json({error: "Invalid Credientials"});
     }
 
 }catch(err){
 console.log(err);
 }
 });
+
+
 
 module.exports = router;

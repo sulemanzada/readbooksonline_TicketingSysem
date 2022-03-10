@@ -1,6 +1,32 @@
-import React from 'react'
-import { NavLink } from "react-router-dom";
+import React, { useState } from 'react'
+import { NavLink, useNavigate} from "react-router-dom";
 const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+    const loginUser = async (e) =>{
+        e.preventDefault();
+
+        const res = await fetch('/signin', {
+            method:"POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                email,
+                password
+            })
+
+        });
+        
+        const data = res.json();
+
+        if(res.status === 400 || !data){
+            window.alert("Invalid Credentials");
+        }else{
+            window.alert("Login Successfull");
+            navigate("/");
+        }
+    }
+
     return (
         <>
 
@@ -30,6 +56,8 @@ const Login = () => {
                                                         <i className="zmdi zmdi-email"></i>
                                                     </label>
                                                     <input type="text" name="email" id="email" className="form-control" autoComplete="off"
+                                                        value={email}
+                                                        onChange={(e) => setEmail(e.target.value)}
                                                         placeholder="Your Email" />
 
                                                 </div>
@@ -38,12 +66,14 @@ const Login = () => {
                                                         <i className="zmdi zmdi-lock"></i>
                                                     </label>
                                                     <input type="password" name="password" id="password" className="form-control" autoComplete="off"
+                                                        value={password}
+                                                        onChange={(e) => setPassword(e.target.value)}
                                                         placeholder="Password" />
 
                                                 </div>
 
                                                 <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                                    <button type="button" className="btn btn-primary btn-lg">Login</button>
+                                                    <button type="button" className="btn btn-primary btn-lg" onClick={loginUser}>Login</button>
                                                 </div>
 
                                             </form>
