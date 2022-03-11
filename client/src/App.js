@@ -1,5 +1,6 @@
 // import { application } from 'express';
 import { Routes, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import Navbar from './component/Navbar';
 import Home from './component/Home';
@@ -7,6 +8,7 @@ import Login from './component/Login';
 import Signup from './component/Signup';
 import Aboutus from './component/Aboutus';
 import NoPage from './component/NoPage';
+import Logout from './component/Logout';
 
 // we link the router files to make our route easy 
 // App.use(require('./server/router/auth'));
@@ -29,6 +31,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="Aboutus" element={<Aboutus />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="logout" element= {<Logout/>}/>
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

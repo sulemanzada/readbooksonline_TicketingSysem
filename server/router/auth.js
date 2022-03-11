@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const {Router} = require('express');
 const bcrypt = require('bcryptjs');
+const authenticate = require("../middleware/authenticate")
 
 require('../db/conn');
 const User = require("../model/userSchema");
@@ -50,12 +51,12 @@ try{
         const isMatch = await  bcrypt.compare(password, userLogin.password);
         // Generating Token
         const token = await userLogin.generateAuthToken();
-
+        // console.log(token);
         //Generating/Storing Cookies
         
         res.cookie("jwtaaftoken", token,{
-            //Expires cookies after 30days (25892000000 milisec)
-            expires: new Date(Date.now() + 25892000000),
+            //Expires cookies after 30days (2589200000 milisec)
+            expires: new Date(Date.now() + 2589200000),
             httpOnly:true
         });
 
@@ -72,6 +73,18 @@ console.log(err);
 }
 });
 
+router.get('/about', authenticate, (req, res) => {
+    console.log("Hello From About");
+    res.send(req.rootUser);
+});
+
+//Logout functionality
+
+router.get('/logout', (req, res) =>{
+    console.log("Hello from logout page");
+    res.clearCookie("jwtaaftoken", {path: '/'});
+    res.status(200).send("User logout");
+});
 
 
 module.exports = router;

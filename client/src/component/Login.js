@@ -48,7 +48,7 @@ const Login = () => {
                                         <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2 ">
 
 
-                                            <form className="mx-1 mx-md-4" id="login-form">
+                                            <form method="POST" className="mx-1 mx-md-4" id="login-form">
 
                                                 <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-2">LogIn</p>
                                                 <div className="d-flex flex-row align-items-center mb-4">
