@@ -1,4 +1,4 @@
-// import { application } from 'express';
+import React, { createContext, useReducer } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
@@ -10,21 +10,16 @@ import Aboutus from './component/Aboutus';
 import NoPage from './component/NoPage';
 import Logout from './component/Logout';
 
-// we link the router files to make our route easy 
-// App.use(require('./server/router/auth'));
-// require("./db/conn");
-// const express = require("express");
-// const App = express();
+import { initialState, reducer } from './reducer/Usereducer';
 
-// App.get("/", (req, res) => {
-//   res.send("test ")
-// });
-
-// App.listen(3000)
-
-function App() {
+//Conext API
+export const UserContext = createContext();
+const App = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  
   return (
     <>
+    <UserContext.Provider value={{state, dispatch}}>
       <Routes>
         <Route path="/" element={<Navbar />}>
           <Route index element={<Home />} />
@@ -35,31 +30,7 @@ function App() {
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
-      {/* <Navbar />
-      <Routes>
-        <Route exact path="/" element={<Home />}>
-
-        </Route>
-      </Routes>
-      <Routes>
-        <Route path="Aboutus" element={<Aboutus />}>
-        </Route>
-      </Routes> */}
-      {/* <Route exact path='/'>
-        <Home />
-      </Route>
-
-      <Route path='/Aboutus'>
-        <Aboutus />
-      </Route>
-
-      <Route path='/Signup'>
-        <Signup />
-      </Route>
-
-      <Route path='/Login'>
-        <Login />
-      </Route> */}
+      </UserContext.Provider>
     </>
   );
 }

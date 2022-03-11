@@ -1,8 +1,51 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 
+import { UserContext } from '../App';
+
 const Navbar = () => {
+    const {state, dispatch} = useContext(UserContext);
+
+    const RenderMenu = () => {
+        if (state){
+            return(
+                <>
+                <li className="nav-item">
+                    <NavLink className="nav-link" to="/"><h6>Home</h6></NavLink>
+                    {/* aria-current="page"  put this after van-link if needed*/}
+                </li>
+                <li className="nav-item">
+                    <NavLink className="nav-link" to="/Aboutus"><h6>About Us</h6></NavLink>
+                    {/* aria-current="page" */}
+                </li>
+                <li className="nav-item">
+                    <NavLink className="nav-link" to="/logout"><h6>Logout</h6></NavLink>
+                    {/* aria-current="page" */}
+                </li>
+                </>
+            )
+        } else{
+            return(
+                <>
+                <li className="nav-item">
+                    <NavLink className="nav-link" to="/"><h6>Home</h6></NavLink>
+                    {/* aria-current="page"  put this after van-link if needed*/}
+                </li>
+                
+                <li className="nav-item">
+                    <NavLink className="nav-link" to="/login"><h6>Login</h6></NavLink>
+                    {/* aria-current="page" */}
+                </li>
+                <li className="nav-item">
+                    <NavLink className="nav-link" to="/signup"><h6>Signup</h6></NavLink>
+                    {/* aria-current="page" */}
+                </li>
+                </>
+            )
+        }
+    }
+
     return (
         <>
 {/* style={{ background: '#1a8cff' }} */}
@@ -14,26 +57,8 @@ const Navbar = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/"><h6>Home</h6></NavLink>
-                                {/* aria-current="page"  put this after van-link if needed*/}
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/Aboutus"><h6>About Us</h6></NavLink>
-                                {/* aria-current="page" */}
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/login"><h6>Login</h6></NavLink>
-                                {/* aria-current="page" */}
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/signup"><h6>Signup</h6></NavLink>
-                                {/* aria-current="page" */}
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/logout"><h6>Logout</h6></NavLink>
-                                {/* aria-current="page" */}
-                            </li>
+                            
+                            <RenderMenu/>
                         </ul>
 
                     </div>
