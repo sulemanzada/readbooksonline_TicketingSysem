@@ -1,11 +1,15 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useNavigate} from "react-router-dom";
 
-const Aboutus = () => {
+// export const [userData, setUserData] = useState();
+// export const UserDataContext = React.createContext();
+const UserAuthenticate = () => {
+    // const [userData, setUserData] = useState();
+
     const navigate = useNavigate();
     const callAboutPage = async () =>{
         try{
-            const res = await fetch('/about', {
+            const res = await fetch('/checkuserauth', {
                 method:"GET",
                 headers:{
                     Accept: "Application/json",
@@ -14,8 +18,7 @@ const Aboutus = () => {
                 credentials: 'include'
             });
             const data = await res.json();
-            console.log(data);
-            
+            // console.log(data);
             if (!res === 200) {
                 const error = new Error(res.error);
                 throw error;
@@ -29,14 +32,11 @@ const Aboutus = () => {
         callAboutPage();
     }, []);
 
-    return (
-        <>
 
-            <h1 className="pt-5">About</h1>
-            <p>About us</p>
-
-        </>
-    )
+  return (
+    <div></div>
+  )
 }
 
-export default Aboutus
+export default UserAuthenticate;
+// export {UserDataContext};

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../App';
 
 const Logout = () => {
-    const {stae, dispatch } = useContext(UserContext);
+    const {dispatch } = useContext(UserContext);
     const navigate = useNavigate();
 
     useEffect(() =>{
@@ -17,7 +17,7 @@ const Logout = () => {
         }).then((res) =>{
             dispatch({type:"USER", payload:false})
             navigate("/");
-            if (res.status != 200) {
+            if (res.status !== 200) {
                 const error = new Error(res.error);
                 throw error;
                 

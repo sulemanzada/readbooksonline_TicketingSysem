@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { UserContext } from '../App';
 
 const Navbar = () => {
-    const {state, dispatch} = useContext(UserContext);
+    const {state} = useContext(UserContext);
 
     const RenderMenu = () => {
         if (state){

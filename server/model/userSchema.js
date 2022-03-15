@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const {roles} = require("./constants");
+
 const userSchema = new mongoose.Schema({
     fname: {
         type: String,
@@ -14,6 +16,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    role: {
+        type: String,
+        enum: [roles.admin, roles.moderator, roles.client],
+        default: roles.client,
+      },
     password: {
         type: String,
         required: true
@@ -22,6 +29,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    
     tokens:[
         {
             token:{
@@ -46,7 +54,11 @@ userSchema.pre('save', async function (next) {
         // h2 = bcrypt.hash(this.cpassword, 8 );
         // console.log(h1, h2);
         // console.log("Hi EXIT");
-    }
+        if (this.email === process.env.ADMIN_EMAIL.toLowerCase()) {
+            this.role = roles.admin;
+          }
+        
+        }
     next();
 });
 

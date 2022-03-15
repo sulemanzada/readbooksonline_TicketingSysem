@@ -5,7 +5,7 @@ const authenticate = require("../middleware/authenticate")
 
 require('../db/conn');
 const User = require("../model/userSchema");
-
+const Book = require("../model/bookSchema");
 // router.get('/', (req, res) => {
 //     res.send(`Hello world from the server rotuer js`);
 // });
@@ -56,7 +56,7 @@ try{
         
         res.cookie("jwtaaftoken", token,{
             //Expires cookies after 30days (2589200000 milisec)
-            expires: new Date(Date.now() + 2589200000),
+            // expires: '1d',
             httpOnly:true
         });
 
@@ -73,15 +73,64 @@ console.log(err);
 }
 });
 
+
+router.post('/bookticket', authenticate, async(req, res) => {
+    var {isbn , bookname, authname , genre, price, submitter} = req.body;
+    if (!isbn ) {
+        return res.status(422).json({status: 422, error: "Please Provide the ISBN"});
+        
+    }
+    if (!bookname) { bookname = "Nobookname";}
+    if (!authname) { authname = "NoAuthor";}
+    if (!genre) { genre = "NoGenre";}
+    if (!price) { price = 00;}
+    try {
+        const bookExist = await Book.findOne({isbn: isbn});
+        if (bookExist) {
+            return res.status(412).json({status: 412, error: "Book or ticket for the book already Exist"});
+        }
+        else{
+            const book = new Book({isbn , bookname, authname , genre, price, submitter });
+            const booktick = await book.save();
+            res.status(201).json({message: "Ticket submitted successfully"});
+            // console.log(`${user} user registered sucessfully`);
+            // console.log(userReg);
+
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
 router.get('/about', authenticate, (req, res) => {
     console.log("Hello From About");
     res.send(req.rootUser);
 });
 
+router.get('/checkuserauth', authenticate, (req, res) => {
+    res.send(req.rootUser);
+});
+
+
+   // GET list of users
+router.get('/userlist' ,authenticate, function (req , res) {
+    User.find({}).then(function (data) {
+    res.send(data);
+    });
+   });
+
+   router.get('/requestlist' ,authenticate, function (req , res) {
+    Book.find({}).then(function (data) {
+    res.send(data);
+    });
+   });
+
+
 //Logout functionality
 
 router.get('/logout', (req, res) =>{
-    console.log("Hello from logout page");
+    // console.log("Hello from logout page");
     res.clearCookie("jwtaaftoken", {path: '/'});
     res.status(200).send("User logout");
 });

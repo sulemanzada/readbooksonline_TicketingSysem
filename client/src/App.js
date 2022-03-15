@@ -9,6 +9,11 @@ import Signup from './component/Signup';
 import Aboutus from './component/Aboutus';
 import NoPage from './component/NoPage';
 import Logout from './component/Logout';
+import Ticket from './component/Ticket';
+import DeleteUsers from './component/DeleteUsers';
+import Requests from './component/Requests';
+import RequestClass from './component/RequestClass';
+import RequestList from './component/RequestList';
 
 import { initialState, reducer } from './reducer/Usereducer';
 
@@ -27,6 +32,11 @@ const App = () => {
           <Route path="Aboutus" element={<Aboutus />} />
           <Route path="signup" element={<Signup />} />
           <Route path="logout" element= {<Logout/>}/>
+          <Route path="Ticket" element= {<Ticket/>}/>
+          <Route path="DeleteUsers" element= {<DeleteUsers/>}/>
+          <Route path="Requests" element= {<Requests/>}/>
+          <Route path="RequestClass" element= {<RequestClass/>}/>
+          <Route path="RequestList" element= {<RequestList/>}/>
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
