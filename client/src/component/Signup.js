@@ -1,7 +1,5 @@
 import React,  { useState } from "react";
-
 import { NavLink, useNavigate } from "react-router-dom";
-// import Login from './component/Login';
 import './signup.css'
 
 const Signup = () => {
@@ -23,20 +21,12 @@ const Signup = () => {
         // console.log(name, value);
         setUser({...user, [name]:value});
     }
-    // const handleSubmit = (e) =>{
-    //     e.preventDefault();
-    //     const newRecord = { ...user, id:new Date().getTime().toString()}
-    //     console.log(records);
-    //     setRecords([...records, newRecord]);
-    //     console.log(records);
-    //     setUser({fname:"", lname:"", email:"", password:"", cpassword: ""});
-    // }
 
     const PostData = async (e) =>{
         e.preventDefault();
         const {fname , lname, email , password , cpassword } =  user;
         console.log(fname , lname, email , password , cpassword);
-        const res = await fetch("/register", {
+        const res = await fetch("/user/register", {
             method: "POST",
             headers:{
                 "Content-Type" : "application/json"
@@ -175,27 +165,8 @@ const Signup = () => {
                 
             </section>
 
-            {/* <div>
-                {
-
-                    records.map((currentElem) => {
-                        const {id, fname, lname, email, password, cpassword} = currentElem;//object de-structuring
-                        return(
-                            <div className="showDataStyle" key = {id}>
-                                <p>{fname}</p>
-                                <p>{lname}</p>
-                                <p>{email}</p>
-                                <p>{password}</p>
-                                <p>{cpassword}</p>
-                            </div>
-                        )
-                    })
-                }
-            </div> */}
-
         </>
     )
 }
 
 export default Signup
-

@@ -13,29 +13,28 @@ class RequestClass extends Component {
    render() {
        console.log(this.state.requests);
        let data = this.state.requests || {};
-       console.log("data",data);
+    //    console.log("data",data);
        return (
            <div>
-           <div className='container'>
-               <table className="table">  
-               <tr>  
-                 {/* <th>ID</th>   */}
-                 <th>ISBN</th>
-                 <th>BOOK NAME</th>
-                 <th>AUTH NAME</th>
-                 <th>PRICE</th>
-                 <th>STATUS</th>
-                 <th>SUBMITTER</th>
-             </tr>
-             </table>
+               <ul>
+           <div className="row row-cols-6">
+
+               
+                 <div>ISBN</div>
+                 <div>BOOK NAME</div>
+                 <div>AUTH NAME</div>
+                 <div>PRICE</div>
+                 <div>STATUS</div>
+                 <div>SUBMITTER</div>
+            
              </div>
+             </ul>
 
-
-             <div>
+             
                <ul>
                    {data}
                </ul>
-               </div>
+               
                </div>
        );
    }

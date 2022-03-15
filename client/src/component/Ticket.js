@@ -162,15 +162,7 @@ const Ticket = () => {
                                                     placeholder="Price of the book" />
 
                                             </div>
-                                            <div className="d-flex flex-row align-items-center mb-4">
-                                                <label htmlFor="submitter">
-                                                   
-                                                </label>
-                                                <input type="text" name="submitter" id="submitter" className="form-control" autoComplete="off"
-                                                    // value = {userData.email}
-                                                 />
-
-                                            </div>
+                                            
                                             
                                             <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                                 <button type="button" className="btn btn-primary btn-lg" onClick={PostData}> Submit Ticket</button>

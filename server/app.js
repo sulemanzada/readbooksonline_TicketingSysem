@@ -8,6 +8,7 @@ require('./db/conn');
 app.use(cookieParser());
 app.use(express.json());
 app.use(require("./router/auth"));
+app.use(require("./router/user.routs"));
 const PORT = process.env.PORT;
 
 app.get('/', (req, res) => {

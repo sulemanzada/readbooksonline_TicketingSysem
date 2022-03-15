@@ -7,7 +7,7 @@ const Logout = () => {
     const navigate = useNavigate();
 
     useEffect(() =>{
-        fetch("/logout", {
+        fetch("/user/logout", {
             method: "GET",
             headers:{
                 Accept: "application/json",
