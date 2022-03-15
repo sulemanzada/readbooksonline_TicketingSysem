@@ -73,6 +73,35 @@ router.post('/user/signin', async(req, res) => {
     }
     });
 
+router.post('/user/create', async(req, res) => {
+    const {fname, lname, email, role, password, cpassword} = req.body;
+    // console.log(fname, lname, email, password, cpassword);
+    if (!fname || !lname || !email || !password || !cpassword) {
+        return res.status(422).json({error: "Plz fill the field properly"});
+        
+    }
+    try {
+        const userExist = await User.findOne({email: email});
+        if (userExist) {
+            return res.status(422).json({status: 422, error: "Email already Exist"});
+        }
+        else if (password !== cpassword) {
+            return res.status(422).json({error:"password do not match"});
+            
+        }
+        else{
+            const user = new User({fname, lname, email, role, password, cpassword });
+            const userReg = await user.save();
+            res.status(201).json({message: "Employee registered successfully"});
+            // console.log(`${user} user registered sucessfully`);
+            // console.log(userReg);
+
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 //Logout functionality
 router.get('/user/', userController.logout);
 

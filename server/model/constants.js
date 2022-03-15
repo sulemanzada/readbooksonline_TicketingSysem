@@ -1,7 +1,7 @@
 module.exports = {
     roles: {
       admin: 'ADMIN',
-      moderator: 'MODERATOR',
+      moderator: 'EMPLOYEE',
       client: 'CLIENT',
     },
     bstates:{

@@ -28,6 +28,10 @@ const Home = () => {
 
             <NavLink to={"/RequestList"} style={{ textDecoration: "none" }}> <span style={{color: "#ffffff"}}>Show and Manage Requests</span></NavLink>
             </div>
+            <div className="d-flex justify-content-center mx-4 mt-2 mb-3 mb-lg-4">
+
+            <NavLink to={"/CreateEmployee"} style={{ textDecoration: "none" }}> <span style={{color: "#ffffff"}}>Create Employee</span></NavLink>
+            </div>
             </div>
             </div>
                 </>
