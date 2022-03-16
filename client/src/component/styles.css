@@ -37,7 +37,7 @@ a {
 
 nav > ul > li > a:hover,
 a:hover {
-  background-color: #fdf2f8;
+  background-color: #1274eb;
 }
 
 h1.title {
@@ -155,9 +155,9 @@ thead th:nth-child(1) {
   max-width: 44px;
 }
 
-tbody tr:hover {
-  /* background-color: #fdf2f8; */
-}
+/* tbody tr:hover {
+  background-color: #fdf2f8;
+} */
 
 tbody tr td {
   padding: 8px 0;
@@ -174,10 +174,10 @@ tbody tr td {
     border-radius: 8px;
   }
   
-  .manage-user-form input[type='submit']:hover {
-    background-color: #fdf2f8;
-  }
-  
+  /* .manage-user-form input[type='submit']:hover {
+     background-color: #fdf2f8; 
+  } 
+  */
   .manage-user-form select {
     border: none;
     font-size: 1.05rem;

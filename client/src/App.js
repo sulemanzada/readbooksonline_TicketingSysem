@@ -15,7 +15,7 @@ import Requests from './component/Requests';
 import RequestClass from './component/RequestClass';
 import RequestList from './component/RequestList';
 import CreateEmployee from './component/CreateEmployee';
-
+import UserProfile from './component/UserProfile';
 import { initialState, reducer } from './reducer/Usereducer';
 
 //Conext API
@@ -39,6 +39,7 @@ const App = () => {
           <Route path="RequestClass" element= {<RequestClass/>}/>
           <Route path="RequestList" element= {<RequestList/>}/>
           <Route path="CreateEmployee" element= {<CreateEmployee/>}/>
+          <Route path="UserProfile" element= {<UserProfile/>}/>
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

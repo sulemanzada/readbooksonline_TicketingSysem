@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const {Router} = require('express');
 const bcrypt = require('bcryptjs');
 const authenticate = require("../middleware/authenticate")
+const {roles} = require("../model/constants");
 
 require('../db/conn');
 
@@ -62,7 +63,16 @@ router.post('/user/signin', async(req, res) => {
     
             
             if (isMatch) {
-                res.json({message: "User Sign in Successfully"});
+                // console.log(userLogin.role);
+                if (userLogin.role === roles.admin) {
+                    res.status(200).json({message: "User Sign in Successfully"});
+                }
+                else if (userLogin.role === roles.moderator) {
+                    res.status(201).json({message: "User Sign in Successfully"});
+                }
+                else{
+                    res.status(202).json({message: "User Sign in Successfully"});
+                }
             }
         }else{
             res.status(400).json({error: "Invalid Credientials"});

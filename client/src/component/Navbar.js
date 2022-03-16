@@ -16,7 +16,7 @@ const Navbar = () => {
                     {/* aria-current="page"  put this after van-link if needed*/}
                 </li>
                 <li className="nav-item">
-                    <NavLink className="nav-link" to="/Aboutus"><h6>About Us</h6></NavLink>
+                    <NavLink className="nav-link" to="/UserProfile"><h6>Profile</h6></NavLink>
                     {/* aria-current="page" */}
                 </li>
                 <li className="nav-item">
@@ -37,8 +37,13 @@ const Navbar = () => {
                     <NavLink className="nav-link" to="/login"><h6>Login</h6></NavLink>
                     {/* aria-current="page" */}
                 </li>
+                
                 <li className="nav-item">
                     <NavLink className="nav-link" to="/signup"><h6>Signup</h6></NavLink>
+                    {/* aria-current="page" */}
+                </li>
+                <li className="nav-item">
+                    <NavLink className="nav-link" to="/Aboutus"><h6>About Us</h6></NavLink>
                     {/* aria-current="page" */}
                 </li>
                 </>
