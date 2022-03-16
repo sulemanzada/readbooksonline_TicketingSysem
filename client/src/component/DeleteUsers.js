@@ -1,80 +1,78 @@
-import Users from './Users';
+import React,  { useState} from "react";
+import { useNavigate } from "react-router-dom";
 import UsersClass from './UsersClass';
 // import './App.css';
 
 function DeleteUsers() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+
+
+const DeleteData = async (e) =>{
+  // e.preventDefault();
+  // email.toLowerCase();
+  var emailLow = email;
+  emailLow = emailLow.toLowerCase();
+  console.log(emailLow);
+  const res = await fetch("/user/deleteOne", {
+    method: "DELETE",  
+    headers:{
+        
+          "Content-Type" : "application/json"
+      },
+      body: JSON.stringify({
+        emailLow
+      })
+
+  });
+  // console.log("submitter", submitter);
+  const data = await res.json();
+  if (data.status === 422 || !data) {
+      window.alert("Please Provide Email");
+      console.log("Please Provide Email");
+      
+  }
+  // if (data.status === 412)
+  else if (data.status === 201){
+      window.alert("Employee Deleted");
+      console.log("Employee Deleted");
+  }
+  else{
+    window.alert("Could not delete the employee maybe it doesnt exists");
+    console.log("Could not delete the employee maybe it doesnt exists");
+  }
+  // console.log(data.status);
+  navigate("/");
+}
   return (
     <div >
-      <Users />
-
       <UsersClass />
+
+      <div className="container mt-5">
+        
+      <p className="text-center h3 fw-bold mb-3 mx-1 mx-md-4 mt-2">
+        To Delete a Employee Enter the email of the Employee
+        </p>
+        <form method="DELETE"  id="req-accept-form" className="row row-cols-2 mt-4">
+
+            
+            <div>
+             
+                <input type="text" name="isbn" id="isbn" className="form-control" autoComplete="off"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder= "Enter the email of the Employee" />
+            </div>
+            
+            <div>
+                <button type="button" className="btn btn-primary btn-lg" onClick={DeleteData} >Delete</button>
+            </div>
+           
+        </form>
+
+    </div>
     </div>
   );
 }
 
 export default DeleteUsers;
-
-
-// const DeleteUsers = () => {
-// const navigate = useNavigate();
-    
-// // UserAuthenticate();
-// // const udata = useContext(UserDataContext);
-// // console.log(UserDataContext);
-// // console.log(udata);
-// const [userData, setUserData] = useState();
-// useEffect(() =>{
-  
-//   const callData = async () =>{
-//       try{
-//           const res = await fetch('/userlist', {
-//               method:"GET",
-//               headers:{
-//                   Accept: "Application/json",
-//                   "Content-Type": "application/json"
-//               },
-//               credentials: 'include'
-//           });
-//           const data = await res.json();
-//           console.log(data);
-//           setUserData(data);
-//           if (!res === 200) {
-//               const error = new Error(res.error);
-//               throw error;
-//           }
-//       }catch(err){
-//           console.log(err);
-//           navigate('/Login');
-//       }
-//   }
-//   callData();
-// }, []);
-//   return (
-//     <div>
-//       <table className="table table-bordered">  
-//       {/* <tr>  
-//                 <th>ID</th>  
-//                 <th>FName</th>
-//                 <th>LName</th>
-//                 <th>Email</th>
-//                 <th>Role</th>
-//             </tr>  
-    
-//             {userData.map((user, index) => (  
-//               <tr key={index}>  
-//                 <td>{user._id}</td>  
-//                 <td>{user.fname}</td>
-//                 <td>{user.lname}</td>  
-//                 <td>{user.email}</td>
-//                 <td>{user.role}</td>    
-//               </tr>  
-//             ))}   */}
-    
-//         </table>
-        
-        
-//     </div>
-//   )
-// }
-
-// export default DeleteUsers

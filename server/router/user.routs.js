@@ -72,7 +72,7 @@ router.post('/user/signin', async(req, res) => {
     console.log(err);
     }
     });
-
+// create employee, same logic as create account/ register
 router.post('/user/create', async(req, res) => {
     const {fname, lname, email, role, password, cpassword} = req.body;
     // console.log(fname, lname, email, password, cpassword);
@@ -101,6 +101,33 @@ router.post('/user/create', async(req, res) => {
         console.log(error);
     }
 });
+router.delete('/user/deleteOne', async(req, res) => {
+    const {emailLow} = req.body;
+    if (!emailLow) {
+        return res.status(422).json({error: "Plz fill the field properly"});
+        
+    }
+    try {
+        const userExist = await User.findOne({email: emailLow});
+        if (userExist) {
+            await User.deleteOne({ _id: userExist._id });
+            
+            return res.status(201).json({status: 201, message: "User Deleted"});
+        }
+        else{
+            res.status(412).json({message: "Could not delete the employee maybe it doesnt exists"});
+            // console.log(`${user} user registered sucessfully`);
+            // console.log(userReg);
+
+        }
+    } catch (error) {
+        console.log(error);
+    }
+    
+
+});
+
+
 
 //Logout functionality
 router.get('/user/', userController.logout);

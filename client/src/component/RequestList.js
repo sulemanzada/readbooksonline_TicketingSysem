@@ -1,4 +1,4 @@
-import React,  { useState, useEffect} from "react";
+import React,  { useState} from "react";
 import { useNavigate } from "react-router-dom";
 import RequestClass from './RequestClass';
 import './styles.css';
@@ -57,7 +57,7 @@ const PutData = async (e) =>{
     window.alert("Book Status update Failed");
     console.log("Book Status update Failed");
   }
-  console.log(data.status);
+  // console.log(data.status);
   navigate("/");
 }
   return (
