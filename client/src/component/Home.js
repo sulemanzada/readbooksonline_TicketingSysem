@@ -11,7 +11,7 @@ const Home = () => {
         if (state === "ADMIN"){
             return(
                 <>
-                <div className="vh-100 rainbow-gradient d-flex flex-column align-items-center justify-content-center" style={{  backgroundColor: "darkcyan"}}>          
+            <div className="vh-100 rainbow-gradient d-flex flex-column align-items-center justify-content-center" style={{  backgroundColor: "darkcyan"}}>          
             {/* background-image: linear-gradient(to bottom right, red, yellow); */}
             <div >
             
@@ -40,14 +40,40 @@ const Home = () => {
         } else if(state === "EMPLOYEE"){
             return(
                 <>
-                Welcome Dear Employee
+            <div className="vh-100 rainbow-gradient d-flex flex-column align-items-center justify-content-center" style={{  backgroundColor: "darkcyan"}}>
+            <div className='mb-5'>
+            
+            <h1>Welcome Dear Emplloyee</h1>
+            
+            <div className="d-flex justify-content-center mx-4 mt-5 mb-3 mb-lg-4">
+
+            <NavLink to={"/Ticket"} style={{ textDecoration: "none" }}> <span style={{color: "#ffffff"}}>Submit a Ticket</span></NavLink>
+            </div>
+            <div className="d-flex justify-content-center mx-4 mt-2 mb-3 mb-lg-4">
+
+            <NavLink to={"/RequestList"} style={{ textDecoration: "none" }}> <span style={{color: "#ffffff"}}>Show and Manage Requests</span></NavLink>
+            </div>
+            </div>
+            </div>
                 </>
             )
         } else if (state === "CLIENT") {
             return(
-                <>
-                You are a client
-                </>
+            <div className="vh-100 rainbow-gradient d-flex flex-column align-items-center justify-content-center" style={{  backgroundColor: "darkcyan"}}>
+            <div >
+            
+            <h1>Welcome Dear Client</h1>
+            
+            <div className="d-flex justify-content-center mx-4 mt-2 mb-3 mb-lg-4">
+
+            <NavLink to={"/Ticket"} style={{ textDecoration: "none" }}> <span style={{color: "#ffffff"}}>Submit a Ticket</span></NavLink>
+            </div>
+            <div className="d-flex justify-content-center mx-4 mt-2 mb-3 mb-lg-4">
+
+            <NavLink to={"/RequestViewer"} style={{ textDecoration: "none" }}> <span style={{color: "#ffffff"}}>Show and Manage Requests</span></NavLink>
+            </div>
+            </div>
+            </div>
             )
             
         }

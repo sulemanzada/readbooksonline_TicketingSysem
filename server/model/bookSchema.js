@@ -20,7 +20,7 @@ const bookSchema = new mongoose.Schema({
     },
     bookStatus:{
         type: String,
-        enum: [bstates.pending, bstates.approved, bstates.declined],
+        enum: [bstates.pending, bstates.approved, bstates.declined, bstates.cancel],
         default: bstates.pending
     },
     submitter: {
