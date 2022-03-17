@@ -23,7 +23,7 @@ router.post('/user/register', async(req, res) => {
     const {fname, lname, email, password, cpassword} = req.body;
     // console.log(fname, lname, email, password, cpassword);
     if (!fname || !lname || !email || !password || !cpassword) {
-        return res.status(422).json({error: "Plz fill the field properly"});
+        return res.status(422).json({status: 422, error: "Plz fill the field properly"});
         
     }
     var isEmailValid = validateEmail(email)

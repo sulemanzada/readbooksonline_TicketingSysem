@@ -43,7 +43,7 @@ const Home = () => {
             <div className="vh-100 rainbow-gradient d-flex flex-column align-items-center justify-content-center" style={{  backgroundColor: "darkcyan"}}>
             <div className='mb-5'>
             
-            <h1>Welcome Dear Emplloyee</h1>
+            <h1>Welcome Dear Employee</h1>
             
             <div className="d-flex justify-content-center mx-4 mt-5 mb-3 mb-lg-4">
 
