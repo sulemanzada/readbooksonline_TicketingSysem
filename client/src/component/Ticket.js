@@ -19,7 +19,7 @@ const Ticket = () => {
                     credentials: 'include'
                 });
                 const data = await res.json();
-                // console.log(data);
+                console.log(data);
                 setUserData(data);
                 if (!res === 200) {
                     const error = new Error(res.error);
@@ -31,7 +31,7 @@ const Ticket = () => {
             }
         }
         callAboutPage();
-    });
+    }, []);
     
     
     

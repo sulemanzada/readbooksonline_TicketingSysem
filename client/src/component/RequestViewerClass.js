@@ -1,6 +1,6 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component } from 'react';
 import Requests from './Requests';
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 // const callAboutPage = async () =>{
     
@@ -20,8 +20,7 @@ class RequestViewerClass extends Component {
    render() {
     //    console.log(this.state.requests);
        let data = this.state.requests || {};
-       let uData = this.state.requests || {};
-       let uRes = this.state.requests || {};
+    //    let uRes = this.state.requests || {};
     //    let uemail = this.state.requests  || {};
     //    console.log("data",data);
        return (
@@ -52,7 +51,7 @@ class RequestViewerClass extends Component {
 
     componentDidMount() {
         let uEmail ={};
-        let uRes = {};
+        // let uRes = {};
         fetch('/about')
         .then(uData => uData.json())
         .then(uRes =>{

@@ -23,6 +23,10 @@ const Navbar = () => {
                     <NavLink className="nav-link" to="/logout"><h6>Logout</h6></NavLink>
                     {/* aria-current="page" */}
                 </li>
+                <li className="nav-item">
+                    <NavLink className="nav-link" to="/ChatPage"><h6>ChatPage</h6></NavLink>
+                    {/* aria-current="page" */}
+                </li>
                 </>
             )
         } else{

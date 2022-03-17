@@ -17,8 +17,8 @@ import RequestList from './component/RequestList';
 import CreateEmployee from './component/CreateEmployee';
 import UserProfile from './component/UserProfile';
 import RequestViewer from './component/RequestViewer';
+import ChatPage from './component/ChatPage';
 import { initialState, reducer } from './reducer/Usereducer';
-
 
 //Conext API
 export const UserContext = createContext();
@@ -43,6 +43,7 @@ const App = () => {
           <Route path="CreateEmployee" element= {<CreateEmployee/>}/>
           <Route path="UserProfile" element= {<UserProfile/>}/>
           <Route path="RequestViewer" element= {<RequestViewer/>}/>
+          <Route path="ChatPage" element= {<ChatPage/>}/>
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

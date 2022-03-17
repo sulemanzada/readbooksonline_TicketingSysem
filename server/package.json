@@ -16,6 +16,7 @@
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
     "middleware": "^1.0.0",
-    "mongoose": "^6.2.4"
+    "mongoose": "^6.2.4",
+    "socket.io": "^4.4.1"
   }
 }

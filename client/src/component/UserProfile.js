@@ -4,34 +4,35 @@ import {useNavigate} from "react-router-dom";
 const UserProfile = () => {
     const navigate = useNavigate();
     const [userData, setUserData] = useState({});
-    const callAboutPage = async () =>{
-        try{
-            const res = await fetch('/about', {
-                method:"GET",
-                headers:{
-                    Accept: "Application/json",
-                    "Content-Type": "application/json"
-                },
-                credentials: 'include'
-            });
-            const data = await res.json();
-            console.log(data);
-            setUserData(data);
-            console.log(userData.role);
-            console.log("data",data.role);
-            
-            if (!res === 200) {
-                const error = new Error(res.error);
-                throw error;
-            }
-        }catch(err){
-            console.log(err);
-            navigate('/Login');
-        }
-    }
+    
     useEffect(() =>{
+        const callAboutPage = async () =>{
+            try{
+                const res = await fetch('/about', {
+                    method:"GET",
+                    headers:{
+                        Accept: "Application/json",
+                        "Content-Type": "application/json"
+                    },
+                    credentials: 'include'
+                });
+                const data = await res.json();
+                // console.log(data);
+                setUserData(data);
+                // console.log(userData.role);
+                // console.log("data",data.role);
+                
+                if (!res === 200) {
+                    const error = new Error(res.error);
+                    throw error;
+                }
+            }catch(err){
+                console.log(err);
+                navigate('/Login');
+            }
+        }
         callAboutPage();
-    });
+    }, []);
 
     return (
         <div className='vh-100' style={{ backgroundColor: "#eece" }}>
