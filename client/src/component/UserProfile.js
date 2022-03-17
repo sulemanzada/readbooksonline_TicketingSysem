@@ -31,12 +31,12 @@ const UserProfile = () => {
     }
     useEffect(() =>{
         callAboutPage();
-    }, []);
+    });
 
     return (
-        <>
-
-            <div className="row row-cols-2 ms-4">
+        <div className='vh-100' style={{ backgroundColor: "#eece" }}>
+        
+            <div className=" row row-cols-2 ms-4"  >
                 
                 <div class="col h3 fw-bold mt-2">First Name</div>
                 <div class="col h3 fw-bold mt-2">{userData.fname}</div>
@@ -48,7 +48,7 @@ const UserProfile = () => {
                 <div class="col h3 fw-bold mt-2">{userData.role}</div>
             </div>
 
-        </>
+        </div>
     )
 }
 

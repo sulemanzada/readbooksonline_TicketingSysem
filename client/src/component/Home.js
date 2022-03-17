@@ -70,7 +70,7 @@ const Home = () => {
             </div>
             <div className="d-flex justify-content-center mx-4 mt-2 mb-3 mb-lg-4">
 
-            <NavLink to={"/RequestViewer"} style={{ textDecoration: "none" }}> <span style={{color: "#ffffff"}}>Show and Manage Requests</span></NavLink>
+            <NavLink to={"/RequestViewer"} style={{ textDecoration: "none" }}> <span style={{color: "#ffffff"}}>Show and Manage Your Requests</span></NavLink>
             </div>
             </div>
             </div>

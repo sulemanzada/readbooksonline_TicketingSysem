@@ -7,13 +7,11 @@ const Login = () => {
     const {dispatch} = useContext(UserContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [userData, setUserData] = useState('');
     const navigate = useNavigate();
     
 
     const loginUser = async (e) =>{
         e.preventDefault();
-
         const res = await fetch('/user/signin', {
             method:"POST",
             headers: {"Content-Type": "application/json"},
@@ -31,15 +29,15 @@ const Login = () => {
         }else{
             if (res.status === 200) {
                 dispatch({type:"USER", payload:"ADMIN"});
-                console.log("ADMIN");
+                // console.log("ADMIN");
             }
            else if (res.status === 201){
             dispatch({type:"USER", payload:"EMPLOYEE"});
-            console.log("EMPLOYEE");
+            // console.log("EMPLOYEE");
            }
            else{
             dispatch({type:"USER", payload:"CLIENT"});
-            console.log("CLIENT");
+            // console.log("CLIENT");
            }
             window.alert("Login Successfull");
             navigate("/");

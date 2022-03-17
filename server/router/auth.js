@@ -11,10 +11,11 @@ const { bstates } = require('../model/constants');
 // });
 const router = Router();
 
+
 router.post('/bookticket', authenticate, async(req, res) => {
     var {isbn , bookname, authname , genre, price, submitter} = req.body;
-    if (!isbn ) {
-        return res.status(422).json({status: 422, error: "Please Provide the ISBN"});
+    if (!isbn || !bookname || !authname || !genre || !price ) {
+        return res.status(422).json({status: 422, error: "Please Provide the complete details"});
         
     }
     if (!bookname) { bookname = "Nobookname";}
@@ -59,7 +60,10 @@ router.put('/bookstatusUpdate', authenticate, async(req, res) => {
                 // console.log("status ",bookStatus);
                 res.json({status: 201, message: "Status Changed successfully"});
                 }
+                else{
             
+                    return res.status(412).json({status: 412, error: "Could not change status"});
+                }
         }
         else{
             
@@ -88,6 +92,11 @@ router.put('/book/cancel', authenticate, async(req, res) => {
                 // console.log("from if: ",bookExist);
                 // console.log("status ",bookStatus);
                 return res.json({status: 201, message: "Status Changed successfully"});
+            }
+            else{
+            
+                return res.status(412).json({status: 412, error: "Could not change status"});
+    
             }
             
         }

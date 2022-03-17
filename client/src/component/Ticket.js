@@ -31,7 +31,7 @@ const Ticket = () => {
             }
         }
         callAboutPage();
-    }, []);
+    });
     
     
     
@@ -74,8 +74,8 @@ const Ticket = () => {
         // console.log("error status:", data);f
         // console.log(data.status);
         if (data.status === 422 || !data) {
-            window.alert("Please Provide the ISBN");
-            console.log("Please Provide the ISBN");
+            window.alert("Please Provide the complete details");
+            console.log("Please Provide the complete details");
             
         }
         else if (data.status === 412) {

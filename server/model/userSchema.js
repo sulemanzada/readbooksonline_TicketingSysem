@@ -25,10 +25,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    cpassword: {
-        type: String,
-        required: true
-    },
     
     tokens:[
         {
@@ -43,13 +39,13 @@ const userSchema = new mongoose.Schema({
 
 //Use of Middleware as required by the Assignment
 //Hashing PASSWORD using BCRYPTJS
-//For the moment I am not using it. I will use it later
+
 
 userSchema.pre('save', async function (next) {
     if (this.isModified('password')) {
         // console.log("Hi from inside");
         this.password = await bcrypt.hash(this.password, 12  );
-        this.cpassword = await bcrypt.hash(this.cpassword, 12 );
+        // this.cpassword = await bcrypt.hash(this.cpassword, 12 );
         // h1 = bcrypt.hash(this.password, 8 );
         // h2 = bcrypt.hash(this.cpassword, 8 );
         // console.log(h1, h2);

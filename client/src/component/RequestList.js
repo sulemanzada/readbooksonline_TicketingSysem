@@ -61,7 +61,7 @@ const PutData = async (e) =>{
   navigate("/");
 }
   return (
-    <div >
+    <div className="vh-100" style={{ backgroundColor: "#eece" }} >
       
 
       <RequestClass />

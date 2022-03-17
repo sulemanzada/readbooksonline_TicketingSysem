@@ -45,16 +45,18 @@ function RequestViewer() {
   
 
   return (
-    <div >
+    <div className="vh-100" style={{ backgroundColor: "#eece" }}>
       
 
       <RequestViewerClass />
-
+      <p className="text-center h3 fw-bold mb-3 mx-1 mx-md-4 mt-5">
+                To Cancel a request Please Enter the ISBN
+              </p>
       <div className="container mt-5">
         
 
         <form method="PUT"  id="req-accept-form" className="row row-cols-3 mt-4">
-
+          
             
             <div>
               
@@ -66,7 +68,8 @@ function RequestViewer() {
                     placeholder="Enter the ISBN" />
             </div>
             <div>
-                <button type="button" className="btn btn-primary btn-lg" onClick={PutData} >Done</button>
+              
+                <button type="button" className="btn btn-primary btn-lg" style={{backgroundColor:"red"}} onClick={PutData} >Cancel Request</button>
             </div>
            
         </form>

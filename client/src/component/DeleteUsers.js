@@ -45,13 +45,13 @@ const DeleteData = async (e) =>{
   navigate("/");
 }
   return (
-    <div >
+    <div className="vh-100" style={{ backgroundColor: "#eece" }}>
       <UsersClass />
 
       <div className="container mt-5">
         
-      <p className="text-center h3 fw-bold mb-3 mx-1 mx-md-4 mt-2">
-        To Delete a Employee Enter the email of the Employee
+      <p className="text-center h3 fw-bold mb-5 mx-1 mx-md-4 mt-2">
+        To Delete an Employee or Client Enter the email
         </p>
         <form method="DELETE"  id="req-accept-form" className="row row-cols-2 mt-4">
 
@@ -65,7 +65,7 @@ const DeleteData = async (e) =>{
             </div>
             
             <div>
-                <button type="button" className="btn btn-primary btn-lg" onClick={DeleteData} >Delete</button>
+                <button type="button" className="btn btn-primary btn-lg" style={{backgroundColor:"red"}} onClick={DeleteData} >Delete User</button>
             </div>
            
         </form>

@@ -10,7 +10,15 @@ const User = require("../model/userSchema");
 //Require controller
 var userController = require('../controllers/user.controller');
 const router = Router();
-
+function validateEmail (emailAdress)
+{
+  let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  if (emailAdress.match(regexEmail)) {
+    return true; 
+  } else {
+    return false; 
+  }
+}
 router.post('/user/register', async(req, res) => {
     const {fname, lname, email, password, cpassword} = req.body;
     // console.log(fname, lname, email, password, cpassword);
@@ -18,17 +26,21 @@ router.post('/user/register', async(req, res) => {
         return res.status(422).json({error: "Plz fill the field properly"});
         
     }
+    var isEmailValid = validateEmail(email)
+    if (isEmailValid === false) {
+        return res.status(422).json({status: 422, error:"Invalid Credientials"});
+    }
     try {
         const userExist = await User.findOne({email: email});
         if (userExist) {
-            return res.status(422).json({status: 422, error: "Email already Exist"});
+            return res.status(402).json({status: 402, error: "Email already Exist"});
         }
         else if (password !== cpassword) {
-            return res.status(422).json({error:"password do not match"});
+            return res.status(412).json({status: 412, error:"password do not match"});
             
         }
         else{
-            const user = new User({fname, lname, email, password, cpassword });
+            const user = new User({fname, lname, email, password });
             const userReg = await user.save();
             res.status(201).json({message: "user registered successfully"});
             // console.log(`${user} user registered sucessfully`);
@@ -42,17 +54,24 @@ router.post('/user/register', async(req, res) => {
 
 router.post('/user/signin', async(req, res) => {
     try{
-        const{ email, password} = req.body;
+        // console.log(req.body);
+        var { email, password} = req.body;
+        // console.log(typeof(email));
+        email = email.toLowerCase();
+        // console.log(email);
         if(!email || !password){
-            return res.status(400).json({error: "Please Fill the data properly"});
+            return res.status(400).json("Please Fill the data properly");
     
+        }
+        var isEmailValid = validateEmail(email)
+        if (isEmailValid === false) {
+            return res.status(400).json("Invalid Credientials");
         }
         const userLogin = await User.findOne({email:email});
         if(userLogin){
             const isMatch = await  bcrypt.compare(password, userLogin.password);
             // Generating Token
             const token = await userLogin.generateAuthToken();
-            // console.log(token);
             //Generating/Storing Cookies
             
             res.cookie("jwtaaftoken", token,{
@@ -73,6 +92,8 @@ router.post('/user/signin', async(req, res) => {
                 else{
                     res.status(202).json({message: "User Sign in Successfully"});
                 }
+            }else{
+                res.status(400).json({error: "Invalid Credientials"});
             }
         }else{
             res.status(400).json({error: "Invalid Credientials"});

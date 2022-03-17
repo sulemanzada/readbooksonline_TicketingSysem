@@ -24,7 +24,8 @@ const Signup = () => {
 
     const PostData = async (e) =>{
         e.preventDefault();
-        const {fname , lname, email , password , cpassword } =  user;
+        var {fname , lname, email , password , cpassword } =  user;
+        email = email.toLocaleLowerCase();
         console.log(fname , lname, email , password , cpassword);
         const res = await fetch("/user/register", {
             method: "POST",
@@ -43,6 +44,16 @@ const Signup = () => {
         if (data.status === 422 || !data) {
             window.alert("INVALID registration");
             console.log("Invalid registration");
+            
+        }
+        else if (data.status === 412 || !data) {
+            window.alert("Passwords do not match");
+            console.log("Passwords do not match");
+            
+        }
+        else if (data.status === 402 || !data) {
+            window.alert("Email Already Exists");
+            console.log("Email Already Exists");
             
         }
         else{
@@ -151,10 +162,10 @@ const Signup = () => {
                                             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp" className="img-fluid" alt="The signup" />
                                             </div>
                                             <div>
-                                                <p className="text-center text-muted mt-4 mb-3">Have already an account? <NavLink to={"/login"} className="fw-bold text-body"><u>Login here</u></NavLink></p>
+                                                <p className="text-center text-muted mt-4 mb-3">Already have an account? <NavLink to={"/login"} className="fw-bold text-body"><u>Login here</u></NavLink></p>
                                             </div>
                                         </div>
-                                        {/* <p className="text-center text-muted mt-2 mb-0">Have already an account? <NavLink to={"/login"} className="fw-bold text-body"><u>Login here</u></NavLink></p> */}
+                                        
                                     </div>
 
                                 </div>
