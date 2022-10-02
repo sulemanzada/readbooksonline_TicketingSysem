@@ -24,8 +24,7 @@ const bookSchema = new mongoose.Schema({
         default: bstates.pending
     },
     submitter: {
-        type: String,
-        // required: true
+        type: mongoose.Types.ObjectId, required: true, ref: 'USER' 
     }
 })
 

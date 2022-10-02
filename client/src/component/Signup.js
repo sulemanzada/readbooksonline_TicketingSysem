@@ -1,8 +1,10 @@
 import React,  { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import './signup.css'
-
+// import './signup.css'
+import UserFormPage from "./UserFormPage";
+const loginMode = false;
 const Signup = () => {
+    // const loginMode = useState(false);
     const navigate = useNavigate();
     const [user , setUser] = useState({
         fname : "",
@@ -66,7 +68,8 @@ const Signup = () => {
     return (
         // React Fragment short form Syntactic sugar
         <>
-            <section style={{ backgroundColor: "#b3e5fc" }}>
+        <UserFormPage loginMode={loginMode}/>
+            {/* <section style={{ backgroundColor: "#b3e5fc" }}>
                 <div className="container vh-100">
                     <div className="row d-flex justify-content-center align-items-center vh-100">
                         <div className="col-lg-12 col-xl-11">
@@ -141,14 +144,14 @@ const Signup = () => {
                                                         value=""
                                                         id="form2Example3c"
                                                     />
-                                                    {/* for="form2Example3" */}
+                                                    {for="form2Example3" }
                                                     <label className="form-check-label" >
                                                         I agree all statements in <a href="#!">Terms of service</a>
                                                     </label>
                                                 </div>
 
                                                 <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                                {/* <input type="submit" name="signup" id="signup" value={'Register'} onClick={handleSubmit}/> */}
+                                                {/* <input type="submit" name="signup" id="signup" value={'Register'} onClick={handleSubmit}/> }
                                                     <button type="button" className="btn btn-primary btn-lg" onClick={PostData}> Register</button>
                                                 </div>
 
@@ -174,7 +177,7 @@ const Signup = () => {
                     </div>
                 </div>
                 
-            </section>
+            </section> */}
 
         </>
     )

@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import ItemList from "./UiElements/ItemList";
-// import ErrorModal from '//ErrorModal'; /ui element add later
-// import LoadingSpinner from '/LoadingSpinner'; /ui element add later
-import { useHttpRequest } from "./custom-hook/httpRequest";
-function DeleteUsers() {
+import React, { useState, useEffect } from "react";
+import TicketItemList from "../UiElements/TicketItemList";
+
+import { useHttpRequest } from "../custom-hook/httpRequest";
+
+const ShowTicketList = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpRequest();
   const [loadedUsers, setLoadedUsers] = useState();
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const responseData = await sendRequest("/user/userlist");
+        const responseData = await sendRequest("/requestlist");
         setLoadedUsers(responseData);
       } catch (err) {
         console.log(err);
@@ -27,9 +27,9 @@ function DeleteUsers() {
           <h2>Loading...</h2>
         </div>
       )}
-      {!isLoading && loadedUsers && <ItemList items={loadedUsers} />}
+      {!isLoading && loadedUsers && <TicketItemList items={loadedUsers} />}
     </>
   );
-}
+};
 
-export default DeleteUsers;
+export default ShowTicketList;

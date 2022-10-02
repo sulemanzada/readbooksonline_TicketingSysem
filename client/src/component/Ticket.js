@@ -1,197 +1,151 @@
-import React,  { useState, useEffect} from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import Input from "./formsElements/Input";
+import Button from "./formsElements/Button";
+import { VALIDATOR_REQUIRE } from "./validators";
+import { useForm } from "./custom-hook/formValidation";
+import { useHttpRequest } from "./custom-hook/httpRequest";
+import { AuthContext } from "./auth-context";
 // import UserAuthenticate from './UserAuthenticate';
-import './signup.css'
+// 197 lines of code.
+// import './signup.css'
+// background-color: #0d6efd;
+// border-color: #0d6efd;
+const Ticket = (props) => {
+  // console.log(props);
+  // if (props) {
+  //   console.log(props.Name);
+  //   console.log(props.ISBN);
+  //   console.log(props.Genre);
+  //   console.log(props.Price);
+  //   console.log(props.AuthName);
+  // }
+  const navigate = useNavigate();
+  const auth = useContext(AuthContext);
+  const { isLoading, error, sendRequest, clearError } = useHttpRequest();
+  const [formState, inputHandler] = useForm(
+    {
+      isbn: {
+        value: props.ISBN ? props.ISBN : "",
+        isValid: props.ISBN ? true : false,
+      },
+      bookname: {
+        value: "",
+        isValid: true,
+      },
+      authname: {
+        value: "",
+        isValid: true,
+      },
+      genre: {
+        value: "",
+        isValid: true,
+      },
+      price: {
+        value: "",
+        isValid: true,
+      },
+    },
+    true
+  );
 
-const Ticket = () => {
-    const navigate = useNavigate();
-    const [userData, setUserData] = useState();
-    
-    useEffect(() =>{
-        const callAboutPage = async () =>{
-            try{
-                const res = await fetch('/checkuserauth', {
-                    method:"GET",
-                    headers:{
-                        Accept: "Application/json",
-                        "Content-Type": "application/json"
-                    },
-                    credentials: 'include'
-                });
-                const data = await res.json();
-                console.log(data);
-                setUserData(data);
-                if (!res === 200) {
-                    const error = new Error(res.error);
-                    throw error;
-                }
-            }catch(err){
-                console.log(err);
-                navigate('/Login');
-            }
-        }
-        callAboutPage();
-    }, []);
-    
-    
-    
-    const [book , setBook] = useState({
-        isbn : "",
-        bookname: "",
-        authname : "",
-        genre : "",
-        price: "",
-        submitter:""
-    })
-    
-    let name, value; 
-    // const [records, setRecords] = useState([]);
-    const handleInput = (e) =>{
-        
-        name = e.target.name;
-        value = e.target.value;
-        console.log(name, value);
-        setBook({...book, [name]:value});
-    }
+  const bookSubmitHandler = async (event) => {
+    event.preventDefault();
+    const httpMethod = props.ISBN ? "PATCH" : "POST";
+    try {
+      await sendRequest(
+        "/bookticket",
+        httpMethod,
+        JSON.stringify({
+          isbn: formState.inputs.isbn.value,
+          bookname: formState.inputs.bookname.value,
+          authname: formState.inputs.authname.value,
+          genre: formState.inputs.genre.value,
+          price: formState.inputs.price.value,
+          submitter: auth.userId,
+        }),
+        { "Content-Type": "application/json" }
+      );
+      navigate("/");
+    } catch (err) {}
+  };
 
-    const PostData = async (e) =>{
-        e.preventDefault();
-        
-        var {isbn , bookname, authname , genre, price, submitter } =  book;
-        submitter = userData.email;
-        const res = await fetch("/bookticket", {
-            method: "POST",
-            headers:{
-                "Content-Type" : "application/json"
-            },
-            body: JSON.stringify({
-                isbn , bookname, authname , genre, price, submitter
-            })
+  const [book, setBook] = useState({
+    isbn: props.ISBN ? props.ISBN : "",
+    bookname: props.Name ? props.Name : "",
+    authname: props.AuthName ? props.AuthName : "",
+    genre: props.Genre ? props.Genre : "",
+    price: props.Price ? props.Price : "",
+    submitter: "",
+  });
 
-        });
-        // console.log("submitter", submitter);
-        const data = await res.json();
-        // console.log("error status:", data);f
-        // console.log(data.status);
-        if (data.status === 422 || !data) {
-            window.alert("Please Provide the complete details");
-            console.log("Please Provide the complete details");
-            
-        }
-        else if (data.status === 412) {
-            window.alert("Book or ticket for the book already Exist");
-            console.log("Book or ticket for the book already Exist");
-        }
-        else{
-            window.alert("Ticket submitted successfully");
-            console.log("Ticket submitted successfully");
-            
-            
-        }
-        navigate("/");
-    }
-    
   return (
     <>
-        <section style={{ backgroundColor: "#b3e5fc" }}>
-            <div className="container vh-100">
-                <div className="row d-flex justify-content-center align-items-center vh-100">
-                    <div className="col-lg-12 col-xl-11">
-                        <div className="card text-black" style={{ borderRadius: "25px" }}>
-                            <div className="card-body p-md-5" style={{ backgroundColor: "#eeee" }}>
+      {/* <ErrorModal error={error} onClear={clearError} /> */}
+      <form className="place-form" onSubmit={bookSubmitHandler}>
+        {/* {isLoading && <LoadingSpinner asOverlay />} */}
+        <Input
+          element="input"
+          id="isbn"
+          type="text"
+          placeholder="Enter ISBN"
+          validators={[VALIDATOR_REQUIRE()]}
+          initialValue={props.ISBN ? props.ISBN : ""}
+          initialValid={props.ISBN ? true : false}
+          errorText="Please enter an ISBN."
+          onInput={inputHandler}
+        />
+        <Input
+          element="input"
+          id="bookname"
+          type="text"
+          placeholder="Enter book name"
+          validators={[]}
+          initialValue={props.Name ? props.Name : ""}
+          initialValid={true}
+          errorText="Please book name"
+          onInput={inputHandler}
+        />
+        <Input
+          element="input"
+          id="authname"
+          type="text"
+          placeholder="Enter author's name"
+          validators={[]}
+          initialValue={props.AuthName ? props.AuthName : ""}
+          initialValid={true}
+          errorText="Please enter an author name."
+          onInput={inputHandler}
+        />
+        <Input
+          element="input"
+          id="genre"
+          type="text"
+          placeholder="Book Genre"
+          validators={[]}
+          initialValue={props.Genre ? props.Genre : ""}
+          initialValid={true}
+          errorText="Please enter genre of the book."
+          onInput={inputHandler}
+        />
+        <Input
+          element="input"
+          id="price"
+          type="text"
+          placeholder="Book's price"
+          validators={[]}
+          initialValue={props.Price ? props.Price : ""}
+          initialValid={true}
+          errorText="Please enter price of the book"
+          onInput={inputHandler}
+        />
 
-                                <div className="row justify-content-center" >
-
-                                    <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1" >
-
-                                        <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-2">Submit a Ticket</p>
-
-                                        <form method="POST"  id="bookticketform" >
-
-                                            <div className="d-flex flex-row align-items-center mb-4">
-                                                <label htmlFor="isbn">
-                                                   
-                                                </label>
-                                                <input type="text" name="isbn" id="isbn" className="form-control" autoComplete="off"
-                                                    value = {book.name}
-                                                    onChange={handleInput}
-                                                    placeholder="Book ISBN*" />
-                                                    {/* <p> {userData.email}</p> */}
-                                                    {/* {console.log("from form", userData)} */}
-
-                                            </div>
-                                            <div className="d-flex flex-row align-items-center mb-4">
-                                                <label htmlFor="bookname">
-                                                   
-                                                </label>
-                                                <input type="text" name="bookname" id="bookname" className="form-control" autoComplete="off"
-                                                    value = {book.name}
-                                                    onChange={handleInput}
-                                                    placeholder="Book Name" />
-
-                                            </div>
-
-                                            <div className="d-flex flex-row align-items-center mb-4">
-                                                <label htmlFor="authname">
-                                                   
-                                                </label>
-                                                <input type="text" name="authname" id="authname" className="form-control" autoComplete="off"
-                                                    value = {book.name}
-                                                    onChange={handleInput}
-                                                    placeholder="Author Name" />
-
-                                            </div>
-                                            <div className="d-flex flex-row align-items-center mb-4">
-                                                <label htmlFor="genre">
-                                                   
-                                                </label>
-                                                <input type="text" name="genre" id="genre" className="form-control" autoComplete="off"
-                                                    value = {book.name}
-                                                    onChange={handleInput}
-                                                    placeholder="Topic/Genre" />
-
-                                            </div>
-                                            
-                                            <div className="d-flex flex-row align-items-center mb-4">
-                                                <label htmlFor="price">
-                                                   
-                                                </label>
-                                                <input type="text" name="price" id="price" className="form-control" autoComplete="off"
-                                                    value = {book.name}
-                                                    onChange={handleInput}
-                                                    placeholder="Price of the book" />
-
-                                            </div>
-                                            
-                                            
-                                            <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                                <button type="button" className="btn btn-primary btn-lg" onClick={PostData}> Submit Ticket</button>
-                                            </div>
-
-                                        </form>
-
-                                    </div>
-                                    
-                                    
-                                </div>
-
-                            </div>
-                        </div>
-                        {/* <div>
-
-                            <h1>
-
-                                {userData}
-                            </h1>
-                        </div> */}
-                    </div>
-                </div>
-            </div>
-            
-        </section>  
-
+        <Button type="submit" disabled={!formState.isValid}>
+          {props.ISBN ? "UPDATE" : "ADD PLACE"}
+        </Button>
+      </form>
     </>
-  )
-}
+  );
+};
 
-export default Ticket
+export default Ticket;

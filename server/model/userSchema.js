@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const uniqueValidator = require('mongoose-unique-validator');
+
 const {roles} = require("./constants");
 
 const userSchema = new mongoose.Schema({
@@ -25,6 +27,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    bookticket: [{ type: mongoose.Types.ObjectId, required: true, ref: 'BOOK' }],
     
     tokens:[
         {
@@ -37,19 +40,11 @@ const userSchema = new mongoose.Schema({
 })
 
 
-//Use of Middleware as required by the Assignment
 //Hashing PASSWORD using BCRYPTJS
-
 
 userSchema.pre('save', async function (next) {
     if (this.isModified('password')) {
-        // console.log("Hi from inside");
         this.password = await bcrypt.hash(this.password, 12  );
-        // this.cpassword = await bcrypt.hash(this.cpassword, 12 );
-        // h1 = bcrypt.hash(this.password, 8 );
-        // h2 = bcrypt.hash(this.cpassword, 8 );
-        // console.log(h1, h2);
-        // console.log("Hi EXIT");
         if (this.email === process.env.ADMIN_EMAIL.toLowerCase()) {
             this.role = roles.admin;
           }
@@ -71,6 +66,8 @@ userSchema.methods.generateAuthToken = async function(){
         console.log(err);
     }
 }
+
+userSchema.plugin(uniqueValidator);
 
 const User = mongoose.model('USER', userSchema);
 
