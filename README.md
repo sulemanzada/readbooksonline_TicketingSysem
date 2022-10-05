@@ -3,8 +3,11 @@
 You would need mongodb Atlas account and a config.env file inside server folder with the following variables:
 
 PORT = 8000
+
 DATABASE = mongodb+srv://yourmongoDBKey@cluster0.hg0sdgn.mongodb.net/?retryWrites=true&w=majority
+
 SECRET_KEY = YOUR_SECRET_KEY
+
 ADMIN_EMAIL=admin@gmail.com
 
 # Notes to keep track of changes made
