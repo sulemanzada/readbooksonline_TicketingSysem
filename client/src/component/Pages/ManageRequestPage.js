@@ -79,34 +79,36 @@ const ManageRequestPage = () => {
           <h4>Genre {bookData.genre}</h4>
           <h4>Price {bookData.price}</h4>
           <h4>Status {bookData.bookStatus}</h4>
-          <div>
-            <Button inverse onClick={() => changeStatus("DECLINED")}>
-              {"DECLINE"}
-            </Button>
-            <Button inverse onClick={() => changeStatus("APPROVED")}>
-              {"APPROVE"}
-            </Button>
-            {auth.userId === bookData.submitter && (
-              <React.Fragment>
-                <Button inverse onClick={() => changeStatus("CANCEL")}>
-                  {"CANCEL"}
-                </Button>
+          {bookData.bookStatus === "PENDING" && (
+            <div>
+              <Button inverse onClick={() => changeStatus("DECLINED")}>
+                {"DECLINE"}
+              </Button>
+              <Button inverse onClick={() => changeStatus("APPROVED")}>
+                {"APPROVE"}
+              </Button>
+              {auth.userId === bookData.submitter && (
+                <React.Fragment>
+                  <Button inverse onClick={() => changeStatus("CANCEL")}>
+                    {"CANCEL"}
+                  </Button>
 
-                <Button
-                  inverse
-                  onClick={() => {
-                    setIsEditMode(true);
-                  }}
-                >
-                  {"Edit"}
-                </Button>
+                  <Button
+                    inverse
+                    onClick={() => {
+                      setIsEditMode(true);
+                    }}
+                  >
+                    {"Edit"}
+                  </Button>
 
-                {/* <NavLink to={"/Ticket"} className={"button"}>
+                  {/* <NavLink to={"/Ticket"} className={"button"}>
                   {"EDIT"}
                 </NavLink> */}
-              </React.Fragment>
-            )}
-          </div>
+                </React.Fragment>
+              )}
+            </div>
+          )}
         </div>
       )}
       {/* {!isLoading && bookData && auth.userId === bookData.submitter && (
