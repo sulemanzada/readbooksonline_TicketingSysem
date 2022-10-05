@@ -1,6 +1,6 @@
 # Before starting
 
-You would need mongodb Atlas account and a config.env file with the following variables:
+You would need mongodb Atlas account and a config.env file inside server folder with the following variables:
 
 PORT = 8000
 DATABASE = mongodb+srv://yourmongoDBKey@cluster0.hg0sdgn.mongodb.net/?retryWrites=true&w=majority
