@@ -29,7 +29,7 @@ User managment interface is modfied. To delete a user the admin just need to use
 User profile page updated logic.
 Manage Order (tickets) page updated with the logic that the user (admin/employee or the user who submitted the ticket) should only be able to change the status of the ticket if it is in pending status.
 
-# Next Up
+# Future Plans
 
 Cleaning code, deleting unnecessary comments and the code which is no longer in use. Deleting old files which are not needed anymore.
 
